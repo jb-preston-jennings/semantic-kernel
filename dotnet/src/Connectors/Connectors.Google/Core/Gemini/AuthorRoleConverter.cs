@@ -45,7 +45,8 @@ internal sealed class AuthorRoleConverter : JsonConverter<AuthorRole?>
 
         if (value == AuthorRole.Tool)
         {
-            writer.WriteStringValue("function");
+            //writer.WriteStringValue("function");
+            writer.WriteStringValue("tool");
         }
         else if (value == AuthorRole.Assistant)
         {

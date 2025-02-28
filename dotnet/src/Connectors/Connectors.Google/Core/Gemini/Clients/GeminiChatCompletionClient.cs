@@ -476,6 +476,10 @@ internal sealed class GeminiChatCompletionClient : ClientBase
         using var httpRequestMessage = await this.CreateHttpRequestAsync(geminiRequest, endpoint).ConfigureAwait(false);
         string body = await this.SendRequestAndGetStringBodyAsync(httpRequestMessage, cancellationToken)
             .ConfigureAwait(false);
+
+        Console.WriteLine("GEMINIRESPONSE");
+        Console.WriteLine(body);
+
         var geminiResponse = DeserializeResponse<GeminiResponse>(body);
         ValidateGeminiResponse(geminiResponse);
         return geminiResponse;

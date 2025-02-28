@@ -20,8 +20,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+<!--
     <ProjectReference Include="..\..\SemanticKernel.Abstractions\SemanticKernel.Abstractions.csproj" />
     <ProjectReference Include="..\..\SemanticKernel.Core\SemanticKernel.Core.csproj" />
+-->
+
+    <PackageReference Include="Microsoft.SemanticKernel.Abstractions" VersionOverride="1.39.0"/>
+    <PackageReference Include="Microsoft.SemanticKernel.Core" VersionOverride="1.39.0"/>
+
   </ItemGroup>
 
   <ItemGroup>
