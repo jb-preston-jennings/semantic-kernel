@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -474,6 +475,19 @@ internal sealed class GeminiChatCompletionClient : ClientBase
         CancellationToken cancellationToken)
     {
         using var httpRequestMessage = await this.CreateHttpRequestAsync(geminiRequest, endpoint).ConfigureAwait(false);
+
+        var stream = await httpRequestMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
+
+        {
+            // convert stream to string
+            StreamReader reader = new StreamReader(stream);
+            string text = await reader.ReadToEndAsync().ConfigureAwait(false);
+            Console.WriteLine("GEMINIREQUEST");
+            Console.WriteLine(text);
+        }
+
+        stream.Seek(0, SeekOrigin.Begin);
+
         string body = await this.SendRequestAndGetStringBodyAsync(httpRequestMessage, cancellationToken)
             .ConfigureAwait(false);
 
